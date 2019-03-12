@@ -2,7 +2,7 @@
 
 This is a fork of the learn-co-students Module One Final Project template.  As a Technical Coaching Fellow at Flatiron School, I am using branches of this fork to give feedback to students on their projects.
 
-These are the steps in my feedback process:
+## These are the steps in my feedback process:
 (For the purpose of this example, I'm giving feedback to Reid and Kim on https://github.com/knheidorn/boozy_game)
 1. Create a new branch for this student project
    - `git checkout -b boozy-game-feedback`
@@ -20,3 +20,6 @@ These are the steps in my feedback process:
 5. When finished suggesting changes, set up a pull request between my `boozy-game-feedback` feature branch and Kim and Reid's "Boozy Game" project fork.
    - https://github.com/knheidorn/boozy_game/compare/master...hoffm386:boozy-game-feedback?expand=1
    - This pull request allows me to write up a summary, and include links to the particular commits that I want to draw to their attention
+
+## Finished Pull Requests:
+1. [Kim and Reid](https://github.com/knheidorn/boozy_game/pull/2)
