@@ -23,3 +23,4 @@ This is a fork of the learn-co-students Module One Final Project template.  As a
 
 ## Finished Pull Requests:
 1. [Kim and Reid](https://github.com/knheidorn/boozy_game/pull/2)
+2. [Logan and Ellen](https://github.com/loganwohlers/module-one-final-project-guidelines-seattle-web-career-021819/pull/2)
