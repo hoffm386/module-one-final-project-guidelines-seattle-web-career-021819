@@ -7,14 +7,15 @@ class CLI
 			fork{ exec 'afplay', "app/GameofThrones.mp3" }
 			self.main_menu
 			input= STDIN.gets.chomp
-			if input == "0"
+			case input
+			when "0"
 				fork{ exec 'killall', "afplay" }
 				is_running = false
-			elsif input == "1"
+			when "1"
 				self.character
-			elsif input == "2"
+			when "2"
 				self.book
-			elsif input == "3"
+			when "3"
 				self.house
 			else
 				puts "Invalid input."
@@ -35,13 +36,17 @@ class CLI
 	end
 
 	def self.character
+		self.num_characters
+		self.character_lookup
+	end
+
+	def self.num_characters
 		is_running = true
-		is_running2 = true
-		while is_running2
+		while is_running
 			puts <<~HOW_MANY_CHARACTERS
 				=========================================================
-	  		Think you know how many characters are in G.O.T? (yes/no)
-	  		=========================================================
+				Think you know how many characters are in G.O.T? (yes/no)
+				=========================================================
 			HOW_MANY_CHARACTERS
 	    input = STDIN.gets.chomp
 		  if input.starts_with? "y" || input == "yes"
@@ -49,22 +54,26 @@ class CLI
 		    input = STDIN.gets.chomp
 			  if input == "2021"
 			  	puts "Congratulations, you are officially a G.O.T NERD"
-			    is_running2 = false
+			    is_running = false
 			  else
 			    puts "Nice try, the correct Answer is #{Character.all.map do |house_character|
 																										house_character.name
 																									end.uniq.count}"
 					puts "Onward to the characters so you can NERD UP!!"
-					is_running2 = false
+					is_running = false
 				end
 			elsif input.starts_with? "n" || input == "no"
 		  	puts "Ok, onward to the characters info so you can NERD UP!!"
-		    is_running2 = false
+		    is_running = false
 		  else
 		  	puts "Invalid input"
 	    end
 		end
-		while is_running == true
+	end
+
+	def self.character_lookup
+		is_running = true
+		while is_running
 			puts <<~CHARACTER_NAME
 				===========================================================================
 				Enter a name for the Character to lookup or enter 0 to return to main menu.
@@ -100,7 +109,7 @@ class CLI
 		puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 		puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 		is_running = true
-		while is_running == true
+		while is_running
 			BookArt.display
 			puts <<~LIST_OF_BOOKS
 
@@ -152,9 +161,13 @@ class CLI
 		puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 		puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 		HouseArt.display
+		self.num_houses
+		self.house_lookup
+	end
+
+	def self.num_houses
 		is_running = true
-		is_running2 = true
- 		while is_running
+		while is_running
 			puts <<~HOW_MANY_BOOKS
 
 
@@ -162,8 +175,8 @@ class CLI
 
 
 				=====================================================
-	  		Think you know how many houses are in G.O.T? (yes/no)
-	  		=====================================================
+				Think you know how many houses are in G.O.T? (yes/no)
+				=====================================================
 			HOW_MANY_BOOKS
 	    input = STDIN.gets.chomp
 		  if input.starts_with? "y" || input == "yes"
@@ -185,22 +198,26 @@ class CLI
 	    end
 			DownArrow.display
 		end
+	end
 
-   	while is_running2
+	def self.house_lookup
+		is_running = true
+
+   	while is_running
 			puts <<~HOUSE_NAME
 
-	    	Enter a house name to find out their Coat of Arms, or press 0 to return to main menu
-	    	====================================================================================
-	    	Suggested Searches (copy and paste works best!):
-	    	==============================================
+				Enter a house name to find out their Coat of Arms, or press 0 to return to main menu
+				====================================================================================
+				Suggested Searches (copy and paste works best!):
+				==============================================
 
-	    	House Targaryen of King's Landing
+				House Targaryen of King's Landing
 
 				House Baratheon of King's Landing
 
-	    	House Stark of Winterfell
+				House Stark of Winterfell
 
-	    	House Lannister of Casterly Rock
+				House Lannister of Casterly Rock
 
 				House Baelish of Harrenhal
 				=================================
@@ -215,7 +232,7 @@ class CLI
 	      puts slogan
 				UpArrow.display
 	    elsif input == "0"
-      	is_running2 = false
+      	is_running = false
       else
       	puts "invalid input"
       end
